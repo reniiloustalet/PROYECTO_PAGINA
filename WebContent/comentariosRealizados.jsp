@@ -11,6 +11,9 @@
 </head>
 <body>
 <h1 align="center">Comentarios realizados</h1>
+<form action="<%= request.getContextPath() %>/LogoutServlet" method="post">
+	<input type="submit" value="Cerrar sesion">
+</form>
 <%
 	ComentariosRealizadosDao crd = new ComentariosRealizadosDao();
 	List<ComentariosRealizadosBean> crb = crd.ComentariosRealizadosBean();

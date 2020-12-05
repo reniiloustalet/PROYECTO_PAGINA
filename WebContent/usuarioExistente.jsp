@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>¡Error! El usuario ya existe</h1>
+	
 	<button onclick="location.href='login.jsp'">Iniciar sesión</button><br>
+	<button onclick="location.href='newuser.jsp'">Registrarse</button><br>
 </body>
 </html>

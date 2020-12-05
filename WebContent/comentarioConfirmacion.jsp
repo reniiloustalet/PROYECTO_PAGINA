@@ -7,6 +7,9 @@
 <title>Confirmacion de comentario</title>
 </head>
 <body>
+<% if(session.getAttribute("usuario") == null){
+		response.sendRedirect("login.jsp");
+	}%>
 <h1>Comentario enviado</h1>
 	<button onclick="location.href='comentarios.jsp'">Realizar otro comentario</button>
 	<button onclick="location.href='comentariosRealizados.jsp'">Comentarios realizados</button>

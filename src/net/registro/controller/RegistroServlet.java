@@ -1,6 +1,7 @@
 package net.registro.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,6 +38,7 @@ public class RegistroServlet extends HttpServlet {
 	}
 
 	/**
+	 * @return 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,22 +53,19 @@ public class RegistroServlet extends HttpServlet {
 		registro.setEmail(email);
 		registro.setClave(clave);
 		
-		boolean result = false;
-		
-		try {
-			result = registroDao.registro(registro);
-				if(result) {
-					response.sendRedirect("newUserConfirmacion.jsp");
-					//request.getRequestDispatcher("newuser.jsp").forward(request, response);
-				} else {
-					response.sendRedirect("usuarioExistente.jsp");
+			try {
+				if(registroDao.existeUsuario(usuario)) {
+					request.getRequestDispatcher("usuarioExistente.jsp").forward(request, response);
+			 	} else if(registroDao.existeEmail(email)) {
+					request.getRequestDispatcher("emailExiste.jsp").forward(request, response);
+				}else if(registroDao.registro(registro)){
+					request.getRequestDispatcher("newUserConfirmacion.jsp").forward(request, response);
 				}
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-	
+
+				
+			} catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		
 	}
 

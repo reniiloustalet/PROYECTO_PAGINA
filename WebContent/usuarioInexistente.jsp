@@ -7,9 +7,10 @@
 <title>Error</title>
 </head>
 <body>
-	<h1>¡Error! El usuario no existe</h1>
+	<h1>¡Error! Datos incorrectos</h1>
 	
 	<button onclick="location.href='newuser.jsp'">Registrarse</button>
+	<button onclick="location.href='login.jsp'">Iniciar sesión</button>
 	
 </body>
 </html>

@@ -5,7 +5,7 @@ public class Registro {
 	private String usuario;
 	private String email;
 	private String clave;
-	private String clave2;
+	private int id;
 	
 	public String getUsuario() {
 		return usuario;
@@ -26,18 +26,17 @@ public class Registro {
 	public String getClave() {
 		return clave;
 	}
-	
+
 	public void setClave(String clave) {
 		this.clave = clave;
+	}	
+	
+	public int getId() {
+		return id;
 	}
 	
-	public String getClave2() {
-		return clave2;
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	public void setClave2(String clave2) {
-		this.clave2 = clave2;
-	}
-	
 	
 }

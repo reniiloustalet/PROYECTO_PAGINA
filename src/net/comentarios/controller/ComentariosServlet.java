@@ -1,18 +1,15 @@
 package net.comentarios.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import net.comentarios.dao.ComentariosDao;
 import net.comentarios.model.Comentarios;
-import net.login.bean.LoginBean;
 
 /**
  * Servlet implementation class ComentariosServlet
@@ -50,25 +47,22 @@ public class ComentariosServlet extends HttpServlet {
 		
 		comentarios.setUsuario(usuario);
 		comentarios.setComentario(comentario);
-		PrintWriter out = response.getWriter();
 		
 		
 		try {
 			comentariosDao.comentarios(comentarios);
-			//if(usuario != null) {
-			HttpSession session = request.getSession();
-				/*if(session.getAttribute("usuario") != null) {
-					response.sendRedirect("comentarioConfirmacion.jsp");
-				} else{
-					response.sendRedirect("login.jsp");
-				}*/
-				LoginBean loginBean = (LoginBean) session.getAttribute("usuario");
-					if(loginBean == null) {
-						request.getRequestDispatcher("login.jsp").forward(request, response);
-						
-					} else {
-						response.sendRedirect("comentarioConfirmacion.jsp");
-					}
+			if(usuario != null) {
+			//HttpSession session = request.getSession();
+			request.getRequestDispatcher("comentarioConfirmacion.jsp").forward(request, response);
+				//if(session.getAttribute("usuario") != null) {
+					//request.getRequestDispatcher("comentarioConfirmacion.jsp").forward(request, response);
+				//} else {
+					//request.getRequestDispatcher("login.jsp").forward(request, response);
+				//}
+			} else {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+			
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -78,3 +72,6 @@ public class ComentariosServlet extends HttpServlet {
 	}
 
 }
+
+		
+	

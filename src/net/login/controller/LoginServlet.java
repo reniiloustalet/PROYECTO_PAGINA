@@ -44,28 +44,27 @@ public class LoginServlet extends HttpServlet {
 
 		//validar el usuario y la clave
 		try {
-			/*if(loginDao.login(loginBean)) {
+			if(loginDao.login(loginBean)) {
 				request.setAttribute("usuario", usuario);
 				HttpSession ses = request.getSession(); 
 				ses.setAttribute("usuario", usuario);
 				RequestDispatcher rd = request.getRequestDispatcher("comentarios.jsp");
 				rd.forward(request, response);
 			} else {
-				response.sendRedirect("usuarioInexistente.jsp");
-			}*/
-			if(loginDao.login(loginBean)) {
-				HttpSession session = request.getSession();
-				session.setAttribute("usuario", usuario);
-				request.getRequestDispatcher("comentarios.jsp").forward(request, response);
-			} else {
 				request.getRequestDispatcher("usuarioInexistente.jsp").forward(request, response);
 			}
+
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+
+		
 	}
 
 }
+
+
