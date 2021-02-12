@@ -10,6 +10,9 @@
 <title>Comentarios realizados</title>
 </head>
 <body>
+<% if(session.getAttribute("usuario") == null){
+		response.sendRedirect("login.jsp");
+	}%>
 <h1 align="center">Comentarios realizados</h1>
 <form action="<%= request.getContextPath() %>/LogoutServlet" method="post">
 	<input type="submit" value="Cerrar sesion">

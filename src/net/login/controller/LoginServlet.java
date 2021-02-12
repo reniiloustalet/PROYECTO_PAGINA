@@ -1,4 +1,4 @@
-package net.login.controller;
+/*package net.login.controller;
 
 import java.io.IOException;
 
@@ -16,14 +16,14 @@ import net.login.dao.LoginDao;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
+/*@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LoginDao loginDao;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    /*public LoginServlet() {
         super();
     }
     
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("usuario", usuario);
 				HttpSession ses = request.getSession(); 
 				ses.setAttribute("usuario", usuario);
-				RequestDispatcher rd = request.getRequestDispatcher("comentarios.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("seriesNetflix.jsp");
 				rd.forward(request, response);
 			} else {
 				request.getRequestDispatcher("usuarioInexistente.jsp").forward(request, response);
@@ -65,6 +65,6 @@ public class LoginServlet extends HttpServlet {
 		
 	}
 
-}
+}*/
 
 

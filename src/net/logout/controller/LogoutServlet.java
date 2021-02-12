@@ -23,17 +23,13 @@ public class LogoutServlet extends HttpServlet {
     public LogoutServlet() {
         super();
     }
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
-		
-		//String usuario = request.getParameter("usuario");
-		//session.setAttribute("usuario", usuario);
-		session.removeAttribute("usuario");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-
-	}
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	
+    	HttpSession session = request.getSession();
+    	
+    	session.removeAttribute("usuario");
+    	request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
 
 }

@@ -45,7 +45,7 @@
 <body>
 <h1 style="text-align:center">Iniciar sesión</h1>
 <div id="info"></div>
-<form action="<%= request.getContextPath() %>/LoginServlet" method="post" name="formulario" onsubmit="return validar();">
+<form action="<%= request.getContextPath() %>/login" method="post" name="formulario" onsubmit="return validar();">
 	<table>
 		<tr>
 			<td width="13%"><label for="usuario">Usuario: </label></td>
@@ -59,5 +59,6 @@
 <p><input type="submit" value="Enviar" name="enviar"></p>
 
 </form>
+<button onclick="location.href='newuser.jsp'">Registrarse</button>
 </body>
 </html>

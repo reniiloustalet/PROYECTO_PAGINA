@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!--  <% if(session.getAttribute("usuario") == null){
+		response.sendRedirect("login.jsp");
+	}%> -->
+	
 	<h1>Registrado con exito</h1>
 		
 	<button onclick="location.href='login.jsp'">Iniciar sesión</button>

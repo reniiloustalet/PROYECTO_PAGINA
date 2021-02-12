@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="net.registro.controller.RegistroServlet" %>
+<%@ page import="net.proyectopagina.controller.UsuarioServlet" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +25,11 @@
 			texto = "El usuario es muy largo. El máximo son 16 caracteres";
 			document.getElementById("info").innerHTML = texto;
 			return false;
-		} else if(!exp.test(usuario)){
+		} /*else if(!exp.test(usuario)){
 				texto ="El usuario solo puede contener letras y números";
 				document.getElementById("info").innerHTML = texto;
 				return false;
-		} else if(clave == null || clave == "" || clave2 == null || clave2 == ""){
+		}*/ else if(clave == null || clave == "" || clave2 == null || clave2 == ""){
 			texto = "Clave incompleta";
 			document.getElementById("info").innerHTML = texto;
 			return false;
@@ -66,16 +66,16 @@
 <body>
 <h1 style="text-align:center">Nuevo usuario</h1>
 <div id="info"></div>
-<form action="<%= request.getContextPath() %>/RegistroServlet" name="formulario" method="post" onsubmit="return validar();">
+<form action="<%= request.getContextPath() %>/registro" name="formulario" method="post" onsubmit="return validar();">
 	<table>
 		<tr>
 			<td><label for="usuario">Usuario: </label>
 			<td><input type="text" id="usuario" name="usuario"></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td><label for="email">Correo electronico: </label>
 			<td><input type="email" id="email" name="email"></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td><label for="clave">Clave: </label>
 			<td><input type="password" id="clave" name="clave"></td>

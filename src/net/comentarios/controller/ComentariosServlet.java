@@ -53,7 +53,7 @@ public class ComentariosServlet extends HttpServlet {
 			comentariosDao.comentarios(comentarios);
 			if(usuario != null) {
 			//HttpSession session = request.getSession();
-			request.getRequestDispatcher("comentarioConfirmacion.jsp").forward(request, response);
+			request.getRequestDispatcher("seriesNetflix.jsp").forward(request, response);
 				//if(session.getAttribute("usuario") != null) {
 					//request.getRequestDispatcher("comentarioConfirmacion.jsp").forward(request, response);
 				//} else {
