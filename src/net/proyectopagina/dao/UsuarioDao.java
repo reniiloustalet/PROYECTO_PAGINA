@@ -40,9 +40,8 @@ public class UsuarioDao {
 		try {
 			connection = getConexion();
 			ps = connection.prepareStatement(instruccionSql);
-			ps.setInt(1, usuario.getId());
-			ps.setString(2, usuario.getUsuario());
-			ps.setString(3, usuario.getClave());
+			ps.setString(1, usuario.getUsuario());
+			ps.setString(2, usuario.getClave());
 			
 			ps.executeUpdate();
 			
@@ -52,13 +51,15 @@ public class UsuarioDao {
 	}
 	
 	//Verificar si ya existe
-	public boolean existeUsuario(Usuario usuario) throws SQLException {
+	public boolean existeUsuario(String usuario, String clave) throws SQLException {
 		
 		instruccionSql = "SELECT * FROM usuarios WHERE usuario = ?";
 		
 		try {
 			connection = getConexion();
 			ps = connection.prepareStatement(instruccionSql);
+			ps.setString(1, usuario);
+			ps.setString(2, clave);
 			rs = ps.executeQuery();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -86,39 +87,15 @@ public class UsuarioDao {
 		return rs.next();
 	}
 	
-	//Actualizar usuario
-	public boolean actualizarUsuario(Usuario usuario) {
-		
-		instruccionSql = "UPDATE usuarios SET usuario = ? WHERE usuario = ?";
-		
-		try {
-			connection = getConexion();
-			ps = connection.prepareStatement(instruccionSql);
-			ps.setString(1, usuario.getUsuario());
-			
-			i = ps.executeUpdate();
-			
-			if(i == 1) {
-				status = true;
-			} else {
-				status = false;
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return status;
-	}
-	
 	//Actualizar clave
-	public boolean actualizarClave(String clave) {
+	public boolean editarClave(Usuario usuario) {
 		
 		instruccionSql = "UPDATE usuarios SET clave = ? WHERE usuario = ?";
 		
 		try {
 			connection = getConexion();
 			ps = connection.prepareStatement(instruccionSql);
-			ps.setString(1, clave);
+			ps.setString(1, usuario.getClave());
 			
 			i = ps.executeUpdate();
 			
@@ -136,7 +113,7 @@ public class UsuarioDao {
 	
 	
 	//Eliminar usuario
-	public boolean eliminarUsuario(int id) {
+	public boolean eliminar(int id) {
 		
 		instruccionSql = "DELETE FROM usuarios WHERE usuario = ? AND clave = ?";
 		

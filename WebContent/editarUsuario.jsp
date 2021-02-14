@@ -12,7 +12,7 @@
 		response.sendRedirect("login.jsp");
 	}%>
 	
-<form>
+<form action="<%=request.getContextPath()%>/actualizarUsuario" method="post" name="formulario">
 	<table>
 		<tr>
 			<td width="13%"><label for="usuario">Usuario actual: </label></td>

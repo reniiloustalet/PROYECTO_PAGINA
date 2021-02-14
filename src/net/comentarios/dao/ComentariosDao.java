@@ -8,31 +8,38 @@ import java.sql.SQLException;
 import net.comentarios.model.Comentarios;
 
 public class ComentariosDao {
-	
-	public int comentarios (Comentarios comentarios) throws ClassNotFoundException {
 		
 		Connection connection;
-		PreparedStatement miStatement;
-		String instruccionSql = "INSERT INTO comentarios (usuario, comentario) VALUES (?, ?)";
-		int result = 0;
-		
-		try {
+		PreparedStatement ps;
+		String instruccionSql;
+		int result;
+
+		public Connection getConexion() {
 			
+		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pagina", "root", "root");
 
-			miStatement = connection.prepareStatement(instruccionSql);
-			miStatement.setString(1, comentarios.getUsuario());
-			miStatement.setString(2, comentarios.getComentario());
-			
-			miStatement.executeUpdate();
-			
-		} catch(SQLException e) {
+		} catch(ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		
-	return result;
-	
-	}
-	
+		return connection;
+		}
+		
+		public void comentarios(Comentarios comentarios) {
+			
+			instruccionSql = "INSERT INTO comentarios (usuario, comentario) VALUES (?, ?)";
+			try {
+			connection = getConexion();
+			ps = connection.prepareStatement(instruccionSql);
+			ps.setString(1, comentarios.getUsuario());
+			ps.setString(2, comentarios.getComentario());
+			
+			ps.executeUpdate();
+			} catch(Exception e) {
+				e.printStackTrace();
+		}
+			}
+		
 }

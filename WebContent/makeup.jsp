@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Contraseña cambiada con exito</h1>
+<h1>Makeup</h1>
 </body>
 </html>

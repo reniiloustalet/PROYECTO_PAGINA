@@ -17,9 +17,8 @@ public class Usuario {
 		this.clave = clave;
 	}
 
-	public Usuario(String usuario) {
-		super();
-		this.usuario = usuario;
+	public Usuario(String clave) {
+		this.clave = clave;
 	}
 	
 	public int getId() {

@@ -40,18 +40,15 @@ public class UsuarioServlet extends HttpServlet {
 		
 		switch(action) {
 		case "/registro":
-			registro(request, response);
+			registroUser(request, response);
 			break;
 		case "/login":
 			login(request, response);
 			break;
-		case "/actualizarUsuario":
-			actualizarUsuario(request, response);
+		case "/editar":
+			editarClave(request, response);
 			break;
-		case "/actualizarClave":
-			actualizarClave(request, response);
-			break;
-		case "/eliminarUsuario":
+		case "/eliminar":
 			eliminarUsuario(request, response);
 			break;
 		default:
@@ -63,18 +60,39 @@ public class UsuarioServlet extends HttpServlet {
 	private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		usuarioDao.eliminarUsuario(id);
-		response.sendRedirect("index.jsp");
+
+		
+		if(usuarioDao.eliminar(id)) {
+			response.sendRedirect("index.jsp");
+		} else {
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('No se pudo completar la operación');");
+			out.println("location='editarPerfil.jsp';");
+			out.println("</script>");
+		}
 		
 	}
 
-	private void actualizarClave(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void editarClave(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-	}
-
-	private void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		String usuario = request.getParameter("usuario");
+		S
+		
+		Usuario existeUsuario = usuarioDao.existeUsuario(usuario, clave);
+		
+		/*if(usuarioDao.actualizarClave(newUser)) {
+			out.println("<script type='text/javascript'>");
+			out.println("alert('Cambio exitoso');");
+			out.println("location='editarPerfil.jsp';");
+			out.println("</script>");
+		} else {
+			out.println("<script type='text/javascript'>");
+			out.println("alert('No se pudo completar la operación');");
+			out.println("location='editarPerfil.jsp';");
+			out.println("</script>");
+		}*/
 		
 	}
 
@@ -103,21 +121,15 @@ public class UsuarioServlet extends HttpServlet {
 		
 	}
 
-	private void registro(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void registroUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String usuario = request.getParameter("usuario");
 		String clave = request.getParameter("clave");
 		
 		Usuario nuevoUsuario = new Usuario(usuario, clave);
-		
-		try {
-		if(usuarioDao.registro(nuevoUsuario)) {
-			
-		}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
+
+		usuarioDao.registro(nuevoUsuario);
+		response.sendRedirect("login.jsp");
 	
 	}
 
